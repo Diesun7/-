@@ -1,0 +1,35 @@
+#include <iostream>
+#include <algorithm>
+#include <unordered_set>
+
+int main() {
+    // Заданий масив
+    int A[] = { 5, 7, 5, -3, 0, -8, 2, 5 };
+
+    // Розмір масиву
+    int m = sizeof(A) / sizeof(A[0]);
+
+    // Знаходимо кількість різних чисел
+    std::unordered_set<int> uniqueNumbers(A, A + m);
+    int uniqueCount = uniqueNumbers.size();
+    std::cout << "Кількість різних чисел: " << uniqueCount << std::endl;
+
+    // Впорядковуємо масив
+    std::sort(A, A + m, [](int a, int b) {
+        if ((a >= 0 && b >= 0) || (a < 0 && b < 0)) {
+            return a < b;
+        }
+        else {
+            return a >= 0;
+        }
+        });
+
+    // Виводимо впорядкований масив
+    std::cout << "Впорядкований масив: ";
+    for (int i = 0; i < m; ++i) {
+        std::cout << A[i] << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
